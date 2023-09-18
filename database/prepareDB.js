@@ -20,7 +20,6 @@ const user_table = `
       "id" SERIAL,
       "username" text NOT NULL,
       "password" text NOT NULL,
-      "image" text NOT NULL,
       PRIMARY KEY ("id")
    );`;
 
@@ -30,7 +29,7 @@ const image_table = `
       "title" text NOT NULL,
       "size" text NOT NULL,
       "type" text NOT NULL,
-      "src" text NOT NULL,
+      "path" text NOT NULL,
       "user_id" INTEGER NOT NULL,
       PRIMARY KEY ("id")
    );`;
