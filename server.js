@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const storage = require('./storageMiddleware');
 
 require('./database/prepareDB');
 
@@ -25,7 +26,8 @@ app.post('/login', middleware.login);
 
 app.post('/user', middleware.createUser);
 app.get('/user/:id/images', middleware.readImageByUserId);
-app.post('/user/:id/images', middleware.uploadImage);
+app.post('/user/:id/image', storage.single('file'), middleware.uploadImage)
+app.post('/user/:id/images', middleware.uploadImages);
 
 app.delete('/image/:id', middleware.deleteImageById);
 
