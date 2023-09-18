@@ -4,7 +4,7 @@ const cors = require('cors');
 
 require('./database/prepareDB');
 
-const handler = require('./middleware');
+const middleware = require('./middleware');
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,13 +21,13 @@ app.get('/', (_req, res) => {
    res.send('Server is running.')
 });
 
-app.post('/login', handler.login);
+app.post('/login', middleware.login);
 
-app.post('/user', handler.createUser);
-app.get('/user/:id/images', handler.readImageByUserId);
-app.post('/user/:id/images', handler.uploadImage);
+app.post('/user', middleware.createUser);
+app.get('/user/:id/images', middleware.readImageByUserId);
+app.post('/user/:id/images', middleware.uploadImage);
 
-app.delete('/image/:id', handler.deleteImageById);
+app.delete('/image/:id', middleware.deleteImageById);
 
 app.listen(PORT, () => {
    console.log(`App is running on port ${PORT}`);
