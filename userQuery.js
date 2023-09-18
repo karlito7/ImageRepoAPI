@@ -1,8 +1,8 @@
 const { queryOne, queryAll } = require('./query');
 
-const create = (username, password, image) => {
-    const data = [username, password, image];
-    const sql = 'INSERT INTO user_table (username, password, image) VALUES ($1, $2, $3)';
+const create = (username, password) => {
+    const data = [username, password];
+    const sql = 'INSERT INTO user_table (username, password) VALUES ($1, $2)';
 
     return queryOne(sql, data);
 };
