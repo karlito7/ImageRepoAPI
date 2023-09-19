@@ -7,6 +7,7 @@ REST API je namjenjen za upravljanje funkcionalnostima klijentske aplikacije. U 
 
 - ### **Baza podataka**
     Za bazu podataka korišten je **postgres**. Baza se sastoji od dvije tablice - **user_table** i **image_table**. Kod spremanja slika, svaki redak u image_table tablici povezan je sa korisnikom, tako da se kod dohvaćanja slika mogu dohvatiti slike određenog korisnika.
+    Bazu podataka nije potrebno ručno kreirati, jer se sama baza zajedno s tablicama kreira automatski prilikom pokretanja servera.
 
 
 - ### **ENV**
