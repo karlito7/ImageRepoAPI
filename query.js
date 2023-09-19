@@ -4,7 +4,7 @@ const { config } = require('./database/dbConfig');
 const queryOne = async (sql, values = undefined) => {
     const client = new Client(config);
     client.connect();
-console.log("??? >> sql >> ", sql, values);
+    
     return client.query(sql, values).then(res => {
         return res.rows[0];
     }).catch(err => {

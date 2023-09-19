@@ -29,6 +29,7 @@ app.get('/user/:id/images', middleware.readImageByUserId);
 app.post('/user/:id/image', storage.single('file'), middleware.uploadImage)
 app.post('/user/:id/images', middleware.uploadImages);
 
+app.get('/image/:id', middleware.readImageById);
 app.delete('/image/:id', middleware.deleteImageById);
 
 app.listen(PORT, () => {

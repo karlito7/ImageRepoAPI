@@ -1,5 +1,6 @@
 const userQuery = require('./userQuery');
 const imageQuery = require('./imageQuery');
+const path = require('path');
 
 
 /**         USER OPERATIONS         */
@@ -34,7 +35,7 @@ const uploadImage = async (request, response) => {
     
     try {
         const resList = await imageQuery.upload(originalname, mimetype, path, size, id);
-        console.log("RES >> ", resList);
+
         response.status(200).json(resList);
     } catch (err) {
         response.status(400).json(err);
@@ -42,7 +43,6 @@ const uploadImage = async (request, response) => {
 };
 
 const uploadImages = async (request, response) => {
-    console.log("request.body >> ", request.file);
     const {list} = request.body;
 
     try {
@@ -66,6 +66,23 @@ const readImageByUserId = async (request, response) => {
     }
 };
 
+const readImageById = async (request, response) => {
+    const id = parseInt(request.params.id);
+    
+    try {
+        const res = await imageQuery.read(id);
+        const filePath = `${__dirname}/${res.path}`;
+
+response.set({
+    'Content-Type': 'image/jpeg',
+  })
+
+        response.sendFile(filePath);
+    } catch (err) {
+        response.status(400).json(err);
+    }
+};
+
 
 const deleteImageById = async (request, response) => {
     const id = parseInt(request.params.id);
@@ -84,6 +101,7 @@ module.exports = {
     login,
     uploadImage,
     uploadImages,
+    readImageById,
     readImageByUserId,
     deleteImageById
 }
